@@ -3,41 +3,28 @@
 #include <iostream>
 #include <cmath> 
 
-double calculatorFunction(double a, double b, char math)// Contains if statements for clarity.
+double calculatorFunction(double a, double b, char math)// Contains switch statement for clarity.
 {
-	double ans = 0;
-	// Rewrite cout statements in order to have just one line.
-	if (math == '+') {
-		ans = a + b;
-		std::cout << '\n' << a << " + " << b << " = " << ans << '\n' << '\n';
+	switch (math) {
+		case '+': 
+			return a + b;
+		case '-':
+			return a - b;
+		case '*':
+			return a * b;
+		case '/':
+			return a / b;
+		case '^':
+			return pow(a,b);
+		default:
+			std::cout << "\nInvalid operator! \n";
+			std::exit(EXIT_FAILURE);
 	}
-	else if (math == '-') {
-		ans = a - b;
-		std::cout << '\n' << a << " - " << b << " = " << ans << '\n' << '\n';
-	}
-	else if (math == '*') {
-		ans = a * b;
-		std::cout << '\n' << a << " * " << b << " = " << ans << '\n' << '\n';
-	}
-	else if (math == '/') {
-		ans = a / b;
-		std::cout << '\n' << a << " / " << b << " = " << ans << '\n' << '\n';
-	}
-	else if (math == '^') {
-		ans = pow(a, b);
-		std::cout << '\n' << a << " ^ " << b << " = " << ans << '\n' << '\n';
-	}
-	else {
-		std::cout << "Please input a valid operator!";
-		// Write in a way for user to input a correct operator
-	};
-
-	return ans;
 }
 
 int main() {
 
-	double a, b;
+	double a, b, ans;
 
 	char math;
 
@@ -56,7 +43,9 @@ int main() {
 		std::cout << "Please enter the second number." << '\n';
 		std::cin >> b;
 
-		calculatorFunction(a, b, math);
+		ans = calculatorFunction(a, b, math);
+
+		std::cout << '\n' << a << " " << math << " " << b << " = " << ans << '\n' << '\n';
 
 		iterations++;
 
