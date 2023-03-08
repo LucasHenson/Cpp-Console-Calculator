@@ -43,6 +43,13 @@ int main() {
 		std::cout << "Please enter the second number." << '\n';
 		std::cin >> b;
 
+		if (b == 0 && math == '/') { // Makes sure division by 0 does not happen.
+
+			std::cout << "\nDivision by 0 is undefined!\n\n";
+			continue;
+
+		}
+
 		ans = calculatorFunction(a, b, math);
 
 		std::cout << '\n' << a << " " << math << " " << b << " = " << ans << '\n' << '\n';
