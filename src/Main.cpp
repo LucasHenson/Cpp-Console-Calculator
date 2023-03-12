@@ -3,36 +3,17 @@
 #include <iostream>
 #include <cmath> 
 
-double calculatorFunction(double a, double b, char math)// Contains switch statement for clarity.
-{
-	switch (math) {
-		case '+': 
-			return a + b;
-		case '-':
-			return a - b;
-		case '*':
-			return a * b;
-		case '/':
-			return a / b;
-		case '^':
-			return pow(a,b);
-		default:
-			std::cout << "\nInvalid operator! \n";
-			std::exit(EXIT_FAILURE);
-	}
-}
+double calculatorFunction(double a, double b, char math);
 
 int main() {
 
 	double a, b, ans;
 
-	char math;
+	char math, calcAgain;
 
-	char again = 'y'; // Used to loop.
+	bool calcOn = true; // Handles program state.
 
-	do {
-
-		static int iterations = 0;
+	while (calcOn) {
 
 		std::cout << "Please enter the first number." << '\n';
 		std::cin >> a;
@@ -54,20 +35,42 @@ int main() {
 
 		std::cout << '\n' << a << " " << math << " " << b << " = " << ans << '\n' << '\n';
 
-		iterations++;
+		calcAgain = '\0'; // Resets variable
 
-		if (iterations >= 10) { // Checks to see if user would like to continue after 10 uses. 
-			std::cout << "Would you like to continue? (y or n)" << '\n';
+		while (calcAgain != 'y' && calcAgain != 'n') {
 
-			std::cin >> again;
+			std::cout << "Would you like to make another calculation? (y or n): ";
+			std::cin >> calcAgain;
 
 			std::cout << '\n';
+		}
 
-			iterations = 0;
-		};
+		if (calcAgain == 'n') {
 
-	} while (again == 'y'); // While again is y, program loops. 
+			calcOn = false;
+
+		}
+
+	} 
 
 	return 0;
+}
 
+double calculatorFunction(double a, double b, char math)// Contains switch statement for clarity.
+{
+	switch (math) {
+	case '+':
+		return a + b;
+	case '-':
+		return a - b;
+	case '*':
+		return a * b;
+	case '/':
+		return a / b;
+	case '^':
+		return pow(a, b);
+	default:
+		std::cout << "\nInvalid operator! \n";
+		std::exit(EXIT_FAILURE);
+	}
 }
